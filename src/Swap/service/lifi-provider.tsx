@@ -28,9 +28,7 @@ export const LiFiProvider: FC<LiFiProviderProps> = ({
   } = useQuery({
     queryKey: ["lifi-chains"] as const,
     queryFn: async () => {
-      console.log("loadLiFiChains1");
       const chains = await loadLiFiChains();
-      console.log("loadLiFiChains2", chains);
       if (chains.length > 0) {
         lifiConfig.setChains(chains);
       }
@@ -43,7 +41,6 @@ export const LiFiProvider: FC<LiFiProviderProps> = ({
     enabled: sdk.loaded,
   });
 
-  console.log("chainsLoading", chainsLoading);
   useEffect(() => {
     if (sdk.loaded && !isInitialized) {
       try {
@@ -57,9 +54,6 @@ export const LiFiProvider: FC<LiFiProviderProps> = ({
 
   // useSyncWagmiConfig(wagmiConfig, connectors, chains);
 
-  console.log("chainsLoading", chainsLoading);
-  console.log("sdk.loaded", sdk.loaded);
-  console.log("isInitialized", isInitialized);
   if (chainsLoading || !sdk.loaded || !isInitialized) {
     return (
       <View

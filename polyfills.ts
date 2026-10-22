@@ -71,7 +71,7 @@ if (typeof global.EventTarget === "undefined") {
     removeEventListener(type: string, listener: Function) {
       if (this.listeners[type]) {
         this.listeners[type] = this.listeners[type].filter(
-          (l) => l !== listener
+          (l) => l !== listener,
         );
       }
     }

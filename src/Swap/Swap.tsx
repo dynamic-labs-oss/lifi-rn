@@ -25,7 +25,7 @@ export const Swap: FC<{ setCurrentView: (view: string) => void }> = ({
           headers: {
             Authorization: `Bearer ${jwt}`,
           },
-        }
+        },
       ).then((res) => res.json());
       return tokens;
     },
