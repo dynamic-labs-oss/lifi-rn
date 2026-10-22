@@ -66,7 +66,6 @@ export const DisplayAuthenticatedUserView: FC = () => {
       wallet,
       chainId: 8453, // base
     });
-    console.log("switched to base");
     const balance = await wallets.getBalance({ wallet });
     setBalances((prev) => ({
       ...prev,

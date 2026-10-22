@@ -186,7 +186,7 @@ export const ExecutionProgress = ({
 
                     <Text
                       className={`px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(
-                        progress.status
+                        progress.status,
                       )}`}
                     >
                       {progress.status}
@@ -254,4 +254,4 @@ export const ExecutionProgress = ({
       </View>
     </>
   );
-}
+};

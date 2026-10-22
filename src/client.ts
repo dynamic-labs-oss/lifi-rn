@@ -26,7 +26,7 @@ export const client = createClient({
   .extend(
     ReactNativeExtension({
       appOrigin: "https://localhost:3000",
-    })
+    }),
   )
   .extend(ViemExtension())
   .extend(ZeroDevExtension())

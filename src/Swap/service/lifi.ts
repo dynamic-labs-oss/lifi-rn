@@ -11,7 +11,7 @@ import type { Config } from "wagmi";
 export const initializeLiFiConfig = (
   wagmiConfig: Config,
   wallets: WalletsModule,
-  viem: any
+  viem: any,
 ) => {
   return createConfig({
     integrator: "DynamicDemo1",
@@ -25,7 +25,6 @@ export const initializeLiFiConfig = (
         },
         switchChain: async (chainId) => {
           try {
-            console.log("switchChain", chainId);
             // if (!wallets.primary) {
             //   throw new Error("No primary wallet");
             // }
@@ -34,13 +33,11 @@ export const initializeLiFiConfig = (
               wallet: wallets.primary,
               chainId,
             });
-            console.log("switched to chain", chainId);
             const client = viem.createWalletClient({
               wallet: wallets.primary,
             });
             return client;
           } catch (error) {
-            console.error("Error switching chain:", error);
             throw error;
           }
         },
@@ -56,8 +53,7 @@ export const loadLiFiChains = async () => {
       chainTypes: [ChainType.EVM],
     });
     return chains;
-  } catch (error) {
-    console.error("Error loading LiFi chains", error);
+  } catch {
     return [];
   }
 };

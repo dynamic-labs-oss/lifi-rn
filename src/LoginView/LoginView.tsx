@@ -13,11 +13,10 @@ const parseJwt = (token: string) => {
       atob(base64)
         .split("")
         .map((c) => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2))
-        .join("")
+        .join(""),
     );
     return JSON.parse(jsonPayload);
-  } catch (error) {
-    console.error("Error parsing JWT:", error);
+  } catch {
     return null;
   }
 };
@@ -39,12 +38,7 @@ export const LoginView: FC = () => {
         return;
       }
 
-      console.log("Auth0 Credentials: " + JSON.stringify(credentials));
-
       const parsedIdToken = parseJwt(credentials.idToken);
-      console.log("Access Token:", credentials?.accessToken);
-      console.log("ID Token:", credentials?.idToken);
-      console.log("Parsed ID Token:", parsedIdToken);
 
       await handleExternalLogin({
         externalJwt: credentials?.idToken,
@@ -59,8 +53,6 @@ export const LoginView: FC = () => {
       externalJwt: string;
       externalUserId: string;
     }) => {
-      console.log("External JWT:", externalJwt);
-      console.log("External User ID:", externalUserId);
       await client.auth.external.signInWithExternalJwt({
         externalJwt,
         externalUserId,

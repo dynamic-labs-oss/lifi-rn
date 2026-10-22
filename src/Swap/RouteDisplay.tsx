@@ -38,8 +38,8 @@ export default function RouteDisplay({
           const estimatedTime = Math.ceil(
             route.steps.reduce(
               (acc, step) => acc + (step.estimate.executionDuration || 0),
-              0
-            ) / 60
+              0,
+            ) / 60,
           );
 
           return (

@@ -230,7 +230,7 @@ export default function Trade() {
     toChainId: number,
     fromTokenAddress: string,
     toTokenAddress: string,
-    amount: string
+    amount: string,
   ) => {
     if (!sdk.loaded || !isConnected || !address) {
       throw new Error("Not ready");
@@ -308,7 +308,7 @@ export default function Trade() {
           const isComplete = updatedRoute.steps.every(
             (step) =>
               step.execution?.status === "DONE" ||
-              step.execution?.status === "FAILED"
+              step.execution?.status === "FAILED",
           );
 
           if (isComplete) {
@@ -328,11 +328,11 @@ export default function Trade() {
           const accepted = window.confirm(
             `Exchange rate has changed!\nOld amount: ${formatUnits(
               BigInt(params.oldToAmount),
-              params.toToken.decimals
+              params.toToken.decimals,
             )} ${params.toToken.symbol}\nNew amount: ${formatUnits(
               BigInt(params.newToAmount),
-              params.toToken.decimals
-            )} ${params.toToken.symbol}\n\nDo you want to continue?`
+              params.toToken.decimals,
+            )} ${params.toToken.symbol}\n\nDo you want to continue?`,
           );
           return accepted;
         },
@@ -382,7 +382,7 @@ export default function Trade() {
     try {
       const amountInWei = parseUnits(
         swapState.amount,
-        swapState.fromToken.decimals
+        swapState.fromToken.decimals,
       );
 
       const routesResult = await getRoutesForSwap(
@@ -390,7 +390,7 @@ export default function Trade() {
         swapState.toChain.id,
         swapState.fromToken.address,
         swapState.toToken.address,
-        amountInWei.toString()
+        amountInWei.toString(),
       );
 
       const availableRoutes = routesResult.routes || [];
